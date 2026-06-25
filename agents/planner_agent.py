@@ -6,36 +6,53 @@ class PlannerAgent:
         uploaded_docs
     ):
 
-        missing = []
+        missing_docs = []
 
         for doc in required_docs:
 
             if doc not in uploaded_docs:
-                missing.append(doc)
+                missing_docs.append(doc)
 
-        plan = "### Action Plan\n\n"
+        plan = ""
 
-        if missing:
+        plan += "## Document Status\n\n"
 
-            plan += "Missing Documents:\n"
+        plan += "Uploaded Documents:\n"
 
-            for doc in missing:
-                plan += f"❌ {doc}\n"
+        if uploaded_docs:
 
-            plan += "\nRecommended Steps:\n"
-
-            step = 1
-
-            for doc in missing:
-                plan += (
-                    f"{step}. Obtain {doc}\n"
-                )
-                step += 1
+            for doc in uploaded_docs:
+                plan += f"✅ {doc}\n"
 
         else:
+            plan += "None\n"
+
+        plan += "\n\nMissing Documents:\n"
+
+        if missing_docs:
+
+            for doc in missing_docs:
+                plan += f"❌ {doc}\n"
+
+        else:
+            plan += "None\n"
+
+        plan += "\n\nAction Plan:\n"
+
+        step = 1
+
+        for doc in missing_docs:
 
             plan += (
-                "✅ All required documents available.\n"
+                f"\n{step}. Obtain {doc}"
+            )
+
+            step += 1
+
+        if not missing_docs:
+
+            plan += (
+                "\nAll required documents are available."
             )
 
         return plan

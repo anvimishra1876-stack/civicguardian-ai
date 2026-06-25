@@ -17,39 +17,35 @@ class DocumentAgent:
 
         return text.lower()
 
-def detect_documents(self, text):
+    def detect_documents(self, text):
 
-    text = text.lower()
+        documents = []
 
-    documents = []
+        keywords = {
+            "Aadhaar": [
+                "aadhaar",
+                "aadhar",
+                "uidai"
+            ],
+            "Income Certificate": [
+                "income certificate"
+            ],
+            "Marksheet": [
+                "marksheet",
+                "mark sheet"
+            ],
+            "Land Record": [
+                "land record",
+                "land ownership"
+            ]
+        }
 
-    keywords = {
-        "Aadhaar": [
-            "aadhaar",
-            "aadhar",
-            "uidai",
-            "AADHAAR"
-        ],
-        "Income Certificate": [
-            "income certificate"
-        ],
-        "Marksheet": [
-            "marksheet",
-            "mark sheet"
-        ],
-        "Land Record": [
-            "land record",
-            "land ownership"
-        ]
-    }
+        for document, words in keywords.items():
 
-    for doc, words in keywords.items():
+            for word in words:
 
-        for word in words:
+                if word in text:
+                    documents.append(document)
+                    break
 
-            if word in text:
-                documents.append(doc)
-                break
-
-    return documents
-
+        return documents

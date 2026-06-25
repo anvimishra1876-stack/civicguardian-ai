@@ -1,9 +1,32 @@
+from servers.scheme_server import SchemeServer
+
+
 class SchemeAgent:
 
-    def format_schemes(self, schemes):
+    def __init__(self):
+
+        self.server = SchemeServer()
+
+    def find_schemes(
+        self,
+        occupation
+    ):
+
+        return (
+            self.server.get_schemes_by_occupation(
+                occupation
+            )
+        )
+
+    def format_schemes(
+        self,
+        schemes
+    ):
 
         if not schemes:
-            return "No matching schemes found."
+            return (
+                "No matching schemes found."
+            )
 
         result = ""
 
