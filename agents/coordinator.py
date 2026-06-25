@@ -8,7 +8,9 @@ class CoordinatorAgent:
     def __init__(self):
 
         self.eligibility_agent = EligibilityAgent()
+
         self.scheme_agent = SchemeAgent()
+
         self.explainer_agent = ExplainerAgent()
 
     def process(
@@ -17,21 +19,32 @@ class CoordinatorAgent:
         income
     ):
 
-        schemes = self.eligibility_agent.check(
-            occupation,
-            income
+        # Agent 1
+        eligible_schemes = (
+            self.eligibility_agent.check(
+                occupation,
+                income
+            )
         )
 
-        formatted = self.scheme_agent.format_schemes(
-            schemes
+        # Agent 2
+        formatted_schemes = (
+            self.scheme_agent.format_schemes(
+                eligible_schemes
+            )
         )
 
+        # Agent 3
         explanation = (
             self.explainer_agent.explain(
                 occupation,
                 income,
-                formatted
+                formatted_schemes
             )
         )
 
-        return explanation
+        return {
+            "eligible_schemes": eligible_schemes,
+            "formatted_schemes": formatted_schemes,
+            "explanation": explanation
+        }

@@ -84,15 +84,17 @@ if st.button("Find Schemes"):
     try:
 
         result = agent.process(
-            occupation,
-            income
+        occupation,
+        income
         )
 
         st.write(
-            "## Recommended Schemes"
+        "## Recommended Schemes"
         )
 
-        st.write(result)
+        st.write(
+        result["explanation"]
+        )
 
         required_docs = [
             "Aadhaar",
@@ -107,9 +109,9 @@ if st.button("Find Schemes"):
         st.write(plan)
 
         pdf_content = (
-            result
-            + "\n\n"
-            + plan
+        result["explanation"]
+        + "\n\n"
+        + plan
         )
 
         pdf_file = (
