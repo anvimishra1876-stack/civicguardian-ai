@@ -1,0 +1,46 @@
+[
+  {
+    "name": "PM Scholarship Scheme",
+    "category": "Student",
+    "income_limit": 800000,
+    "documents": [
+      "Aadhaar",
+      "Income Certificate"
+    ]
+  },
+  {
+    "name": "National Scholarship Portal",
+    "category": "Student",
+    "income_limit": 600000,
+    "documents": [
+      "Aadhaar",
+      "Marksheet"
+    ]
+  },
+  {
+    "name": "PM Kisan",
+    "category": "Farmer",
+    "income_limit": 1000000,
+    "documents": [
+      "Land Record",
+      "Aadhaar"
+    ]
+  },
+  {
+    "name": "Startup India Seed Fund",
+    "category": "Entrepreneur",
+    "income_limit": 999999999,
+    "documents": [
+      "Business Registration"
+    ]
+  },
+  {
+    "name": "Senior Citizen Pension Scheme",
+    "category": "Senior Citizen",
+    "income_limit": 500000,
+    "documents": [
+      "Age Proof",
+      "Aadhaar"
+    ]
+  }
+]

@@ -1,28 +1,31 @@
-import os
-
 import streamlit as st
-from dotenv import load_dotenv
-import google.generativeai as genai
 
-load_dotenv()
+from agents.coordinator import CoordinatorAgent
 
-api_key = os.getenv("GEMINI_API_KEY")
+agent = CoordinatorAgent()
 
-genai.configure(api_key=api_key)
+st.title("🛡 CivicGuardian AI")
 
-model = genai.GenerativeModel("gemini-2.5-flash")
-
-st.set_page_config(
-    page_title="CivicGuardian AI",
-    page_icon="🛡️"
+occupation = st.selectbox(
+    "Occupation",
+    [
+        "Student",
+        "Farmer",
+        "Entrepreneur",
+        "Senior Citizen"
+    ]
 )
 
-st.title("🛡️ CivicGuardian AI")
+income = st.number_input(
+    "Annual Income",
+    min_value=0
+)
 
-if st.button("Test Gemini"):
+if st.button("Find Schemes"):
 
-    response = model.generate_content(
-        "Say hello to CivicGuardian AI."
+    result = agent.process(
+        occupation,
+        income
     )
 
-    st.success(response.text)
+    st.write(result)
